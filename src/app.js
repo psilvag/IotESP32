@@ -6,8 +6,7 @@ const cors = require('cors')
 const config = require('../config')
 const db = require('./utils/database')
 const initModels = require('./models/initModels')
-const userRouter = require('./users/users.router')
-const authRouter = require('./auth/auth.router')
+const dataRoutes=require('./dataSensorDHT11/data.routes')
 
 //? Initial Configs
 
@@ -35,13 +34,13 @@ app.get('/', (req, res) => {
         status: 200,
         message: 'Ok!',
         routes: {
-            users: ""
+            data: ""
         }
     })
 })
 
-app.use('/api/v1/users', userRouter)
-app.use('/api/v1/auth', authRouter)
+
+app.use('/api_IOT/v1/data', dataRoutes)
 
 
 app.listen(config.api.port, () => {
